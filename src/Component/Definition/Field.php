@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,34 +15,26 @@ namespace Sylius\Component\Grid\Definition;
 
 class Field
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $type;
+    private string $type;
 
-    /** @var string */
-    private $path;
+    private string $path;
 
-    /** @var string */
-    private $label;
+    private string $label;
 
-    /** @var bool */
-    private $enabled = true;
+    private bool $enabled = true;
 
-    /** @var string|null */
-    private $sortable;
+    private ?string $sortable = null;
 
     /** @var array */
     private $options = [];
 
     /**
-     * @var int
-     *
      * Position equals to 100 to ensure that wile sorting fields by position ASC
      * the fields positioned by default will be last
      */
-    private $position = 100;
+    private int $position = 100;
 
     private function __construct(string $name, string $type)
     {

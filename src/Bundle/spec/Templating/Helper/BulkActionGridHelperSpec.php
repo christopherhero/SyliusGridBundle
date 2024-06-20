@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -28,7 +28,7 @@ final class BulkActionGridHelperSpec extends ObjectBehavior
     function it_uses_a_grid_renderer_to_render_a_bulk_action(
         BulkActionGridRendererInterface $bulkActionGridRenderer,
         GridView $gridView,
-        Action $bulkAction
+        Action $bulkAction,
     ): void {
         $bulkActionGridRenderer->renderBulkAction($gridView, $bulkAction, null)->willReturn('<a href="#">Delete</a>');
         $this->renderBulkAction($gridView, $bulkAction)->shouldReturn('<a href="#">Delete</a>');

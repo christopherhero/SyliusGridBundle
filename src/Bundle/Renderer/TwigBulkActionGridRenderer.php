@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,11 +20,9 @@ use Twig\Environment;
 
 final class TwigBulkActionGridRenderer implements BulkActionGridRendererInterface
 {
-    /** @var Environment */
-    private $twig;
+    private Environment $twig;
 
-    /** @var array */
-    private $bulkActionTemplates;
+    private array $bulkActionTemplates;
 
     public function __construct(Environment $twig, array $bulkActionTemplates)
     {

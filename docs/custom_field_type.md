@@ -23,7 +23,7 @@ class CustomType implements FieldTypeInterface
         // Your rendering logic... Use Twig, PHP or even external api...
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([
@@ -35,7 +35,7 @@ class CustomType implements FieldTypeInterface
         ;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'custom';
     }
@@ -54,6 +54,8 @@ app.grid_field.custom:
 
 Now you can use your new column type in the grid configuration!
 
+<details open><summary>Yaml</summary>
+
 ```yaml
 sylius_grid:
     grids:
@@ -67,3 +69,69 @@ sylius_grid:
                     type: custom
                     label: sylius.ui.name
 ```
+
+</details>
+
+<details open><summary>PHP</summary>
+
+```php
+<?php
+
+use App\Entity\Suplier;
+use Sylius\Bundle\GridBundle\Builder\Action\Action;
+use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
+use Sylius\Bundle\GridBundle\Builder\GridBuilder;
+use Sylius\Bundle\GridBundle\Builder\Field\Field;
+use Sylius\Bundle\GridBundle\Config\GridConfig;
+
+return static function (GridConfig $grid) {
+    $grid->addGrid(GridBuilder::create('app_admin_supplier', Suplier::class)
+        ->addField(
+            Field::create('name', 'custom')
+                ->setLabel('sylius.ui.name')
+        )
+    )
+};
+```
+
+OR
+
+```php
+<?php
+# src/Grid/AdminSupplierGrid.php
+
+declare(strict_types=1);
+
+namespace App\Grid;
+
+use App\Entity\Suplier;
+use Sylius\Bundle\GridBundle\Builder\Field\StringField;
+use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
+use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
+use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
+
+final class AdminSupplierGrid extends AbstractGrid implements ResourceAwareGridInterface
+{
+    public static function getName(): string
+    {
+           return 'app_admin_supplier';
+    }
+
+    public function buildGrid(GridBuilderInterface $gridBuilder): void
+    {
+        $gridBuilder
+            ->addField(
+                Field::create('name', 'custom')
+                    ->setLabel('sylius.ui.name')
+            )
+        ;    
+    }
+    
+    public function getResourceClass(): string
+    {
+        return Suplier::class;
+    }
+}
+```
+
+</details>

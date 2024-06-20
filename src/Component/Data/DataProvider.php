@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,19 +20,16 @@ use Sylius\Component\Grid\Sorting\SorterInterface;
 
 final class DataProvider implements DataProviderInterface
 {
-    /** @var DataSourceProviderInterface */
-    private $dataSourceProvider;
+    private DataSourceProviderInterface $dataSourceProvider;
 
-    /** @var FiltersApplicatorInterface */
-    private $filtersApplicator;
+    private FiltersApplicatorInterface $filtersApplicator;
 
-    /** @var SorterInterface */
-    private $sorter;
+    private SorterInterface $sorter;
 
     public function __construct(
         DataSourceProviderInterface $dataSourceProvider,
         FiltersApplicatorInterface $filtersApplicator,
-        SorterInterface $sorter
+        SorterInterface $sorter,
     ) {
         $this->dataSourceProvider = $dataSourceProvider;
         $this->filtersApplicator = $filtersApplicator;

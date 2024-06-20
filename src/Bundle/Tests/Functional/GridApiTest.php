@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -92,11 +92,23 @@ final class GridApiTest extends JsonApiTestCase
     {
         $this->client->request('GET', sprintf(
             '/books/?criteria[title][type]=equal&criteria[title][value]=%s',
-            urlencode('Book 5')
+            urlencode('Book 5'),
         ));
 
         $this->assertCount(1, $this->getItemsFromCurrentResponse());
         $this->assertSame('Book 5', $this->getFirstItemFromCurrentResponse()['title']);
+    }
+
+    /** @test */
+    public function it_filters_books_by_title_with_contains(): void
+    {
+        $this->client->request('GET', sprintf(
+            '/books/?criteria[title][type]=contains&criteria[title][value]=%s',
+            urlencode('jurassic'),
+        ));
+
+        $this->assertCount(1, $this->getItemsFromCurrentResponse());
+        $this->assertSame('Jurassic Park', $this->getFirstItemFromCurrentResponse()['title']);
     }
 
     /** @test */

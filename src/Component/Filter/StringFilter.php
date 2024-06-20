@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,6 +15,7 @@ namespace Sylius\Component\Grid\Filter;
 
 use Sylius\Component\Grid\Data\DataSourceInterface;
 use Sylius\Component\Grid\Data\ExpressionBuilderInterface;
+use Sylius\Component\Grid\Data\MemberOfAwareExpressionBuilderInterface;
 use Sylius\Component\Grid\Filtering\FilterInterface;
 
 final class StringFilter implements FilterInterface
@@ -36,6 +37,8 @@ final class StringFilter implements FilterInterface
     public const TYPE_STARTS_WITH = 'starts_with';
 
     public const TYPE_ENDS_WITH = 'ends_with';
+
+    public const TYPE_MEMBER_OF = 'member_of';
 
     public const TYPE_IN = 'in';
 
@@ -81,10 +84,10 @@ final class StringFilter implements FilterInterface
      * @throws \InvalidArgumentException
      */
     private function getExpression(
-        ExpressionBuilderInterface $expressionBuilder,
+        ExpressionBuilderInterface|MemberOfAwareExpressionBuilderInterface $expressionBuilder,
         string $type,
         string $field,
-        $value
+        $value,
     ) {
         switch ($type) {
             case self::TYPE_EQUAL:
@@ -107,6 +110,12 @@ final class StringFilter implements FilterInterface
                 return $expressionBuilder->in($field, array_map('trim', explode(',', $value)));
             case self::TYPE_NOT_IN:
                 return $expressionBuilder->notIn($field, array_map('trim', explode(',', $value)));
+            case self::TYPE_MEMBER_OF:
+                if (method_exists($expressionBuilder, 'memberOf')) {
+                    return $expressionBuilder->memberOf($value, $field);
+                }
+
+                throw new \InvalidArgumentException(sprintf('The memberOf method is not supported by %s', get_class($expressionBuilder)));
             default:
                 throw new \InvalidArgumentException(sprintf('Could not get an expression for type "%s"!', $type));
         }

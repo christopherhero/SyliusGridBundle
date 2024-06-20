@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -31,7 +31,7 @@ final class FiltersCriteriaResolver implements FiltersCriteriaResolverInterface
             function (Filter $filter) {
                 return $filter->getCriteria();
             },
-            $this->getFiltersDefaultCriteria($grid->getFilters())
+            $this->getFiltersDefaultCriteria($grid->getFilters()),
         );
 
         return $parameters->get('criteria', $defaultCriteria);

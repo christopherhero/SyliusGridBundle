@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,11 +22,9 @@ class GridView implements GridViewInterface
     /** @var mixed */
     private $data;
 
-    /** @var Grid */
-    private $definition;
+    private Grid $definition;
 
-    /** @var Parameters */
-    private $parameters;
+    private Parameters $parameters;
 
     /**
      * @param mixed $data
@@ -98,7 +96,7 @@ class GridView implements GridViewInterface
         Assert::true($this->definition->hasField($fieldName), sprintf('Field "%s" does not exist.', $fieldName));
         Assert::true(
             $this->definition->getField($fieldName)->isSortable(),
-            sprintf('Field "%s" is not sortable.', $fieldName)
+            sprintf('Field "%s" is not sortable.', $fieldName),
         );
     }
 }

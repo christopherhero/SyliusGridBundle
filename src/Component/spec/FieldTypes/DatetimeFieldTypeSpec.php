@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -33,7 +33,7 @@ final class DatetimeFieldTypeSpec extends ObjectBehavior
     function it_uses_data_extractor_to_obtain_data_parse_it_with_given_configuration_and_renders_it(
         DataExtractorInterface $dataExtractor,
         \DateTime $dateTime,
-        Field $field
+        Field $field,
     ): void {
         $dataExtractor->get($field, ['foo' => 'bar'])->willReturn($dateTime);
 

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -17,14 +17,15 @@ use Webmozart\Assert\Assert;
 
 class Grid
 {
-    /** @var string */
-    private $code;
+    private string $code;
 
-    /** @var string */
-    private $driver;
+    private string $driver;
 
     /** @var array */
     private $driverConfiguration;
+
+    /** @var string|callable|null */
+    private $provider;
 
     /** @var array */
     private $sorting = [];
@@ -71,6 +72,16 @@ class Grid
     public function setDriverConfiguration(array $driverConfiguration): void
     {
         $this->driverConfiguration = $driverConfiguration;
+    }
+
+    public function getProvider(): string|callable|null
+    {
+        return $this->provider;
+    }
+
+    public function setProvider(string|callable|null $provider): void
+    {
+        $this->provider = $provider;
     }
 
     public function getSorting(): array

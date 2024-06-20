@@ -1,5 +1,162 @@
 # CHANGELOG
 
+## v1.12.1 (2024-01-05)
+
+#### Details
+
+- [#277](https://github.com/Sylius/SyliusGridBundle/issues/277) Fix the build ([@loic425](https://github.com/loic425))
+- [#281](https://github.com/Sylius/SyliusGridBundle/issues/281) Init .gitattributes to preserve the planet ([@loic425](https://github.com/loic425))
+- [#280](https://github.com/Sylius/SyliusGridBundle/issues/280) [docs] Add missing fields options on string filter ([@loic425](https://github.com/loic425))
+- [#298](https://github.com/Sylius/SyliusGridBundle/issues/298) Fix CI ([@loic425](https://github.com/loic425))
+- [#317](https://github.com/Sylius/SyliusGridBundle/issues/317) Fix coding standard ([@loic425](https://github.com/loic425))
+- [#315](https://github.com/Sylius/SyliusGridBundle/issues/315) [Docs] Add info about available form options ([@loic425](https://github.com/loic425))
+- [#316](https://github.com/Sylius/SyliusGridBundle/issues/316) Don't remove driver options when extending a grid configuration ([@loic425](https://github.com/loic425))
+
+## v1.12.0 (2022-10-31)
+
+#### Details
+
+- [#241](https://github.com/Sylius/SyliusGridBundle/issues/241) Adding conflicts with pagerfanta 2 ([@loic425](https://github.com/loic425))
+- [#268](https://github.com/Sylius/SyliusGridBundle/issues/268) Documenting pitfalls of some fields ([@mamazu](https://github.com/mamazu))
+- [#269](https://github.com/Sylius/SyliusGridBundle/issues/269) Add support for deprecation contracts ^3.1 ([@loic425](https://github.com/loic425))
+- [#271](https://github.com/Sylius/SyliusGridBundle/issues/271) Change to stable SyliusResourceBundle 1.10 ([@Zales0123](https://github.com/Zales0123))
+
+## v1.12.0-BETA.1 (2022-10-19)
+
+#### Details
+
+- [#253](https://github.com/Sylius/SyliusGridBundle/issues/253) [Docs]: fix the correct enabled grid field template ([@Louzet](https://github.com/Louzet), [@lchrusciel](https://github.com/lchrusciel))
+- [#258](https://github.com/Sylius/SyliusGridBundle/issues/258) [Maintenance] Allow flex plugin during plugin installation ([@lchrusciel](https://github.com/lchrusciel))
+- [#262](https://github.com/Sylius/SyliusGridBundle/issues/262) Fix the build ([@loic425](https://github.com/loic425))
+- [#264](https://github.com/Sylius/SyliusGridBundle/issues/264) feat: Allow to remove fields, filters and action from extended grid ([@Florian-Merle](https://github.com/Florian-Merle), [@Zales0123](https://github.com/Zales0123))
+- [#266](https://github.com/Sylius/SyliusGridBundle/issues/266) Change filter label type ([@Florian-Merle](https://github.com/Florian-Merle))
+
+## v1.12.0-ALPHA.1 (2022-05-16)
+
+#### Details
+
+- [#236](https://github.com/Sylius/SyliusGridBundle/issues/236) Drop support for Symfony 4 ([@loic425](https://github.com/loic425))
+- [#237](https://github.com/Sylius/SyliusGridBundle/issues/237) Add support for Symfony 6 ([@loic425](https://github.com/loic425), [@lchrusciel](https://github.com/lchrusciel))
+- [#238](https://github.com/Sylius/SyliusGridBundle/issues/238) Fix Bootstrap for Symfony 6 ([@loic425](https://github.com/loic425))
+- [#240](https://github.com/Sylius/SyliusGridBundle/issues/240) Use storage factory id ([@loic425](https://github.com/loic425))
+- [#242](https://github.com/Sylius/SyliusGridBundle/issues/242) Fix Kernel on test app ([@loic425](https://github.com/loic425))
+- [#244](https://github.com/Sylius/SyliusGridBundle/issues/244) Fix psalm error ([@loic425](https://github.com/loic425))
+- [#245](https://github.com/Sylius/SyliusGridBundle/issues/245) Fix routes on test app ([@loic425](https://github.com/loic425))
+- [#246](https://github.com/Sylius/SyliusGridBundle/issues/246) Fix getting container deprecation ([@loic425](https://github.com/loic425))
+
+## CHANGELOG FOR `1.11.x`
+
+### v1.11.0 (2022-04-27)
+
+#### TL;DR
+
+Stable 1.11.0 release 🎉🎉🎉
+
+#### Details
+
+- [#225](https://github.com/Sylius/SyliusGridBundle/issues/225) Testing with PHP 8.1 ([@loic425](https://github.com/loic425))
+- [#228](https://github.com/Sylius/SyliusGridBundle/issues/228) Fix coding style for make grid command ([@loic425](https://github.com/loic425))
+- [#229](https://github.com/Sylius/SyliusGridBundle/issues/229) [GridMaker] Use snake case for grid names ([@loic425](https://github.com/loic425))
+- [#230](https://github.com/Sylius/SyliusGridBundle/issues/230) Bring back checking coding standard ([@loic425](https://github.com/loic425))
+- [#231](https://github.com/Sylius/SyliusGridBundle/issues/231) Remove tmp Price grid ([@loic425](https://github.com/loic425))
+- [#233](https://github.com/Sylius/SyliusGridBundle/issues/233) Fix coding standards (and the build as well) ([@Zales0123](https://github.com/Zales0123))
+- [#234](https://github.com/Sylius/SyliusGridBundle/issues/234) Fix description for grid maker namespace ([@loic425](https://github.com/loic425))
+
+### v1.11.0-RC.3 (2022-03-15)
+
+#### Details
+
+- [#223](https://github.com/Sylius/SyliusGridBundle/issues/223) [Sorting] Allow for sorting on disabled, declared fields (to preserve bc) ([@lchrusciel](https://github.com/lchrusciel))
+- [#224](https://github.com/Sylius/SyliusGridBundle/issues/224) [Sorting] Allow for sorting on disabled, declared fields (to preserve bc) ([@lchrusciel](https://github.com/lchrusciel))
+
+### v1.11.0-RC.2 (2022-03-14)
+
+#### Details
+
+- [#222](https://github.com/Sylius/SyliusGridBundle/issues/222) [Security] Dql injection through sorting parameters blocked ([@TheMilek](https://github.com/TheMilek))
+
+### v1.11.0-RC.1 (2022-03-08)
+
+#### Details
+
+- [#214](https://github.com/Sylius/SyliusGridBundle/issues/214) [Docs] Resorting pages on docs homepage ([@loic425](https://github.com/loic425))
+- [#215](https://github.com/Sylius/SyliusGridBundle/issues/215) [Docs] Add docs for the grid maker ([@loic425](https://github.com/loic425))
+- [#216](https://github.com/Sylius/SyliusGridBundle/issues/216) [Docs] Add documentation for Grids as service ([@loic425](https://github.com/loic425))
+- [#218](https://github.com/Sylius/SyliusGridBundle/issues/218) [Docs] Fix the template reference ([@Roshyo](https://github.com/Roshyo))
+- [#219](https://github.com/Sylius/SyliusGridBundle/issues/219) [DX] [Docs] Adding more typing to FieldType and in doc ([@Roshyo](https://github.com/Roshyo))
+
+### v1.11.0-BETA.1 (2022-02-10)
+
+#### Details
+
+- [#209](https://github.com/Sylius/SyliusGridBundle/issues/209) Hotfix with datasources ([@loic425](https://github.com/loic425))
+- [#211](https://github.com/Sylius/SyliusGridBundle/issues/211) [Fix] Register grid maker only when maker is enabled ([@loic425](https://github.com/loic425))
+- [#212](https://github.com/Sylius/SyliusGridBundle/issues/212) [Fix] Add a logic exception to install the needed adapter ([@loic425](https://github.com/loic425))
+
+### v1.11.0-ALPHA.1 (2022-02-02)
+
+#### TL;DR
+
+- GridBuilder configurable in PHP 🎉
+- Bump PHP to 8.0 and Symfony to 5.4
+- Make grid command
+
+#### Details
+
+- [#119](https://github.com/Sylius/SyliusGridBundle/issues/119) [GridBuilder] Grids as service ([@loic425](https://github.com/loic425))
+- [#152](https://github.com/Sylius/SyliusGridBundle/issues/152) Upgrade to GitHub-native Dependabot ([@dependabot-preview](https://github.com/dependabot-preview)[[@bot](https://github.com/bot)])
+- [#155](https://github.com/Sylius/SyliusGridBundle/issues/155) Grid config builders ([@loic425](https://github.com/loic425))
+- [#163](https://github.com/Sylius/SyliusGridBundle/issues/163) Update phpstan/phpstan-webmozart-assert requirement from 0.12.12 to 0.12.13 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#169](https://github.com/Sylius/SyliusGridBundle/issues/169) Update vimeo/psalm requirement from 4.6.4 to 4.9.2 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#173](https://github.com/Sylius/SyliusGridBundle/issues/173) [GridBuilder] Predefined fields ([@loic425](https://github.com/loic425))
+- [#174](https://github.com/Sylius/SyliusGridBundle/issues/174) [GridBuilder] Predefined action groups ([@loic425](https://github.com/loic425))
+- [#175](https://github.com/Sylius/SyliusGridBundle/issues/175) [GridBuilder] Predefined filters ([@loic425](https://github.com/loic425))
+- [#176](https://github.com/Sylius/SyliusGridBundle/issues/176) [GridBuilder] Test PHP config without yaml config and add some missing features ([@loic425](https://github.com/loic425))
+- [#177](https://github.com/Sylius/SyliusGridBundle/issues/177) [GridBuilder] Docs ([@loic425](https://github.com/loic425))
+- [#178](https://github.com/Sylius/SyliusGridBundle/issues/178) Update vimeo/psalm requirement from 4.6.4 to 4.11.2 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#179](https://github.com/Sylius/SyliusGridBundle/issues/179) Update phpstan/phpstan-phpunit requirement from 0.12.18 to 0.12.22 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#180](https://github.com/Sylius/SyliusGridBundle/issues/180) Update phpstan/phpstan requirement from 0.12.94 to 0.12.99 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#182](https://github.com/Sylius/SyliusGridBundle/issues/182) [GridBuilder] Fix update action label ([@loic425](https://github.com/loic425))
+- [#183](https://github.com/Sylius/SyliusGridBundle/issues/183) Tests with Postgres ([@loic425](https://github.com/loic425))
+- [#184](https://github.com/Sylius/SyliusGridBundle/issues/184) Fix like with PostgresSQL ([@loic425](https://github.com/loic425))
+- [#185](https://github.com/Sylius/SyliusGridBundle/issues/185) [GridBuilder] Fix entity filter with multiple option ([@loic425](https://github.com/loic425))
+- [#186](https://github.com/Sylius/SyliusGridBundle/issues/186) [GridBuilder] Add some missing features on field builder ([@loic425](https://github.com/loic425))
+- [#187](https://github.com/Sylius/SyliusGridBundle/issues/187) [GridBuilder] Improve documentation for Grid builders ([@loic425](https://github.com/loic425))
+- [#188](https://github.com/Sylius/SyliusGridBundle/issues/188) Fixed template syntax in route config ([@veloxy](https://github.com/veloxy))
+- [#189](https://github.com/Sylius/SyliusGridBundle/issues/189) Update vimeo/psalm requirement from 4.11.2 to 4.12.0 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#190](https://github.com/Sylius/SyliusGridBundle/issues/190) [GridBuilder] Allow using class as parameter for grids as service ([@loic425](https://github.com/loic425))
+- [#191](https://github.com/Sylius/SyliusGridBundle/issues/191) [GridBuilder] Fix extending a grids as service ([@loic425](https://github.com/loic425))
+- [#197](https://github.com/Sylius/SyliusGridBundle/issues/197) Drop support for PHP7.4, Symfony version upgraded to 5.4 ([@Rafikooo](https://github.com/Rafikooo))
+- [#200](https://github.com/Sylius/SyliusGridBundle/issues/200) Remove travis build status from README ([@GSadee](https://github.com/GSadee))
+- [#202](https://github.com/Sylius/SyliusGridBundle/issues/202) Fix grid builder method positions ([@loic425](https://github.com/loic425))
+- [#203](https://github.com/Sylius/SyliusGridBundle/issues/203) Update vimeo/psalm requirement from 4.12.0 to 4.18.1 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#205](https://github.com/Sylius/SyliusGridBundle/issues/205) Add support for pagerfanta 3 ([@loic425](https://github.com/loic425))
+- [#206](https://github.com/Sylius/SyliusGridBundle/issues/206) Make grid ([@loic425](https://github.com/loic425))
+- [#207](https://github.com/Sylius/SyliusGridBundle/issues/207) Update vimeo/psalm requirement from 4.18.1 to 4.19.0 ([@dependabot](https://github.com/dependabot)[[@bot](https://github.com/bot)])
+- [#208](https://github.com/Sylius/SyliusGridBundle/issues/208) Allow to run workflow manually  ([@Zales0123](https://github.com/Zales0123))
+
+## CHANGELOG FOR `1.10.x`
+
+### v1.10.2 (2022-03-15)
+
+#### Details
+
+- [#223](https://github.com/Sylius/SyliusGridBundle/issues/223) [Sorting] Allow for sorting on disabled, declared fields (to preserve bc) ([@lchrusciel](https://github.com/lchrusciel))
+
+### v1.10.1 (2022-03-14)
+
+#### Details
+
+- [#222](https://github.com/Sylius/SyliusGridBundle/issues/222) [Security] Dql injection through sorting parameters blocked ([@TheMilek](https://github.com/TheMilek))
+
+### v1.10.0 (2021-08-18)
+
+#### Details
+
+- [#159](https://github.com/Sylius/SyliusGridBundle/issues/159) Fixing the build ([@loic425](https://github.com/loic425))
+- [#171](https://github.com/Sylius/SyliusGridBundle/issues/171) Use PHP 7.4 syntax ([@Zales0123](https://github.com/Zales0123))
+- [#68](https://github.com/Sylius/SyliusGridBundle/issues/68) Add possibility to set pagination options on grids ([@vvasiloi](https://github.com/vvasiloi), [@AdamKasp](https://github.com/AdamKasp), [@GSadee](https://github.com/GSadee))
+
 ## CHANGELOG FOR `1.9.x`
 
 ### v1.9.0 (2021-03-19)

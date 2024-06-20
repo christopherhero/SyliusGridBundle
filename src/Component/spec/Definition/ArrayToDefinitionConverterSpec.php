@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -41,12 +41,14 @@ final class ArrayToDefinitionConverterSpec extends ObjectBehavior
         $grid = Grid::fromCodeAndDriverConfiguration(
             'sylius_admin_tax_category',
             'doctrine/orm',
-            ['resource' => 'sylius.tax_category']
+            ['resource' => 'sylius.tax_category'],
         );
 
         $grid->setSorting(['code' => 'desc']);
 
         $grid->setLimits([9, 18]);
+
+        $grid->setProvider('App\Provider');
 
         $codeField = Field::fromNameAndType('code', 'string');
         $codeField->setLabel('System Code');
@@ -103,6 +105,7 @@ final class ArrayToDefinitionConverterSpec extends ObjectBehavior
                 'name' => 'doctrine/orm',
                 'options' => ['resource' => 'sylius.tax_category'],
             ],
+            'provider' => 'App\Provider',
             'sorting' => [
                 'code' => 'desc',
             ],

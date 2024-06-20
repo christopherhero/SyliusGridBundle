@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,8 +24,7 @@ use Doctrine\Common\Collections\ExpressionBuilder as CollectionsExpressionBuilde
  */
 final class ExpressionBuilder implements ExpressionBuilderInterface
 {
-    /** @var CollectionsExpressionBuilder */
-    private $expressionBuilder;
+    private CollectionsExpressionBuilder $expressionBuilder;
 
     /** @var array */
     private $orderBys = [];
@@ -78,6 +77,11 @@ final class ExpressionBuilder implements ExpressionBuilderInterface
     public function greaterThanOrEqual(string $field, $value)
     {
         return $this->expressionBuilder->gte($field, $value);
+    }
+
+    public function memberOf($value, string $field)
+    {
+        return $this->expressionBuilder->memberOf($value, $field);
     }
 
     public function in(string $field, array $values)

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,8 +15,7 @@ namespace Sylius\Bundle\GridBundle\Form\Registry;
 
 final class FormTypeRegistry implements FormTypeRegistryInterface
 {
-    /** @var array */
-    private $formTypes = [];
+    private array $formTypes = [];
 
     public function add(string $identifier, string $typeIdentifier, string $formType): void
     {

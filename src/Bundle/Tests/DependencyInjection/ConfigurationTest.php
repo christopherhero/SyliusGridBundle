@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -48,7 +48,7 @@ final class ConfigurationTest extends TestCase
                     ],
                 ],
             ],
-            'grids'
+            'grids',
         );
     }
 
@@ -60,7 +60,7 @@ final class ConfigurationTest extends TestCase
         $this->assertProcessedConfigurationEquals(
             [[]],
             ['drivers' => ['doctrine/orm']],
-            'drivers'
+            'drivers',
         );
     }
 
@@ -78,7 +78,7 @@ final class ConfigurationTest extends TestCase
                     'bulk_action' => [],
                 ],
             ],
-            'templates'
+            'templates',
         );
     }
 
@@ -139,7 +139,7 @@ final class ConfigurationTest extends TestCase
                     'sorting' => ['name' => 'desc'],
                 ],
             ]],
-            'grids.*.sorting'
+            'grids.*.sorting',
         );
 
         $this->assertProcessedConfigurationEquals(
@@ -160,7 +160,7 @@ final class ConfigurationTest extends TestCase
                     'sorting' => [],
                 ],
             ]],
-            'grids.*.sorting'
+            'grids.*.sorting',
         );
     }
 
@@ -263,7 +263,7 @@ final class ConfigurationTest extends TestCase
                     'limits' => [6, 12, 24],
                 ],
             ]],
-            'grids.*.limits'
+            'grids.*.limits',
         );
 
         $this->assertProcessedConfigurationEquals(
@@ -284,7 +284,7 @@ final class ConfigurationTest extends TestCase
                     'limits' => [],
                 ],
             ]],
-            'grids.*.limits'
+            'grids.*.limits',
         );
     }
 

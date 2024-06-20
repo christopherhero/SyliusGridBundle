@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,6 +16,7 @@ namespace Sylius\Bundle\GridBundle;
 use Sylius\Bundle\GridBundle\DependencyInjection\Compiler\RegisterDriversPass;
 use Sylius\Bundle\GridBundle\DependencyInjection\Compiler\RegisterFieldTypesPass;
 use Sylius\Bundle\GridBundle\DependencyInjection\Compiler\RegisterFiltersPass;
+use Sylius\Bundle\GridBundle\DependencyInjection\Compiler\RegisterStubCommandsPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -32,6 +33,7 @@ final class SyliusGridBundle extends Bundle
         $container->addCompilerPass(new RegisterDriversPass());
         $container->addCompilerPass(new RegisterFiltersPass());
         $container->addCompilerPass(new RegisterFieldTypesPass());
+        $container->addCompilerPass(new RegisterStubCommandsPass());
     }
 
     /**

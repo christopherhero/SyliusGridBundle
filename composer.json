@@ -28,25 +28,30 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "sylius-labs/polyfill-symfony-event-dispatcher": "^1.0",
         "sylius/registry": "^1.5",
-        "symfony/config": "^4.4 || ^5.2",
-        "symfony/dependency-injection": "^4.4 || ^5.2",
-        "symfony/deprecation-contracts": "^2.2",
-        "symfony/event-dispatcher": "^4.4 || ^5.2",
-        "symfony/form": "^4.4 || ^5.2",
-        "symfony/framework-bundle": "^4.4 || ^5.2",
-        "symfony/http-kernel": "^4.4 || ^5.2",
-        "symfony/options-resolver": "^4.4 || ^5.2",
-        "symfony/property-access": "^4.4 || ^5.2",
+        "symfony/config": "^5.4 || ^6.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0",
+        "symfony/deprecation-contracts": "^2.2 || ^3.1",
+        "symfony/event-dispatcher": "^5.4 || ^6.0",
+        "symfony/form": "^5.4 || ^6.0",
+        "symfony/framework-bundle": "^5.4 || ^6.0",
+        "symfony/http-kernel": "^5.4 || ^6.0",
+        "symfony/options-resolver": "^5.4 || ^6.0",
+        "symfony/property-access": "^5.4 || ^6.0",
         "webmozart/assert": "^1.9"
     },
     "replace": {
         "sylius/grid": "self.version"
     },
     "conflict": {
-        "twig/twig": "^1.0"
+        "twig/twig": "<2.12",
+        "pagerfanta/core": "<3.0",
+        "pagerfanta/doctrine-phpcr-odm-adapter": "<3.0",
+        "pagerfanta/doctrine-dbal-adapter": "<3.0",
+        "pagerfanta/doctrine-orm-adapter": "<3.0",
+        "pagerfanta/pagefanta": "<3.0"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^1.12 || ^2.0",
@@ -57,29 +62,31 @@
         "lchrusciel/api-test-case": "^5.0",
         "matthiasnoback/symfony-config-test": "^4.2.1",
         "matthiasnoback/symfony-dependency-injection-test": "^4.2.1",
-        "pagerfanta/pagerfanta": "^1.1 || ^2.5",
+        "pagerfanta/pagerfanta": "^3.0",
         "pamil/phpspec-skip-example-extension": "^4.2",
-        "phpspec/phpspec": "^7.0",
-        "phpstan/phpstan": "0.12.82",
-        "phpstan/phpstan-phpunit": "0.12.18",
-        "phpstan/phpstan-webmozart-assert": "0.12.12",
+        "phpspec/phpspec": "^7.2",
+        "phpstan/phpstan": "^1.7",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "phpstan/phpstan-webmozart-assert": "^1.2",
         "phpunit/phpunit": "^9.5",
-        "sylius-labs/coding-standard": "^3.0",
-        "sylius/resource-bundle": "^1.8",
-        "symfony/console": "^4.4 || ^5.2",
-        "symfony/dotenv": "^4.4 || ^5.2",
+        "sylius-labs/coding-standard": "^4.0",
+        "sylius/resource-bundle": "dev-poc-new-resource-metadata",
+        "symfony/console": "^5.4 || ^6.0",
+        "symfony/dotenv": "^5.4 || ^6.0",
+        "symfony/maker-bundle": "^1.36",
         "symfony/polyfill-mbstring": "<1.22.0 || >1.22.0",
-        "symfony/twig-bundle": "^4.4 || ^5.2",
+        "symfony/twig-bundle": "^5.4 || ^6.0",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.12 || ^3.0",
-        "vimeo/psalm": "4.6.4"
+        "vimeo/psalm": "^4.26",
+        "rector/rector": "^0.13"
     },
     "suggest": {
         "sylius/currency-bundle": "^1.7"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.10-dev"
+            "dev-master": "1.11-dev"
         }
     },
     "autoload": {
@@ -92,23 +99,40 @@
         "psr-4": {
             "Sylius\\Bundle\\GridBundle\\spec\\": "src/Bundle/spec/",
             "Sylius\\Component\\Grid\\spec\\": "src/Component/spec/",
-            "App\\": "src/Bundle/test/src/",
-            "AppBundle\\": "src/Bundle/test/src/AppBundle/"
+            "App\\": "tests/Application/src/",
+            "AppBundle\\": "src/Bundle/test/src/AppBundle/",
+            "App\\Tests\\Tmp\\": "tests/Application/tmp/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "dealerdirect/phpcodesniffer-composer-installer": false
         }
     },
     "scripts": {
         "analyse": [
             "@composer validate --strict",
-            "vendor/bin/ecs check src || true",
+            "vendor/bin/ecs check",
             "vendor/bin/phpstan analyse --ansi -c phpstan.neon -l max src",
             "vendor/bin/psalm"
         ],
         "fix": [
-            "vendor/bin/ecs check src --fix"
+            "vendor/bin/ecs check --fix"
         ],
         "test": [
             "vendor/bin/phpspec run --ansi --no-interaction",
-            "vendor/bin/phpunit --colors=always"
+            "APP_ENV=test_grids_with_yaml_config vendor/bin/phpunit --colors=always"
+        ],
+        "test-php-config": [
+            "APP_ENV=test_grids_with_php_config vendor/bin/phpunit --colors=always"
+        ],
+        "test-with-grids-as-service": [
+            "APP_ENV=test_grids_as_service vendor/bin/phpunit --colors=always"
+        ],
+        "test-with-postgres": [
+            "APP_ENV=test_with_postgres vendor/bin/phpunit --colors=always"
         ]
-    }
+    },
+    "prefer-stable": true
 }

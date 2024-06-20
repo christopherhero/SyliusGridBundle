@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,8 +20,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
 {
     public const EVENT_NAME = 'sylius.grid.%s';
 
-    /** @var EventDispatcherInterface */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(EventDispatcherInterface $eventDispatcher)
     {
@@ -33,8 +32,10 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
         $grid = Grid::fromCodeAndDriverConfiguration(
             $code,
             $configuration['driver']['name'],
-            $configuration['driver']['options']
+            $configuration['driver']['options'],
         );
+
+        $grid->setProvider($configuration['provider'] ?? null);
 
         if (array_key_exists('sorting', $configuration)) {
             $grid->setSorting($configuration['sorting']);
@@ -44,15 +45,15 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
             $grid->setLimits($configuration['limits']);
         }
 
-        foreach ($configuration['fields'] as $name => $fieldConfiguration) {
+        foreach ($configuration['fields'] ?? [] as $name => $fieldConfiguration) {
             $grid->addField($this->convertField($name, $fieldConfiguration));
         }
 
-        foreach ($configuration['filters'] as $name => $filterConfiguration) {
+        foreach ($configuration['filters'] ?? [] as $name => $filterConfiguration) {
             $grid->addFilter($this->convertFilter($name, $filterConfiguration));
         }
 
-        foreach ($configuration['actions'] as $name => $actionGroupConfiguration) {
+        foreach ($configuration['actions'] ?? [] as $name => $actionGroupConfiguration) {
             $grid->addActionGroup($this->convertActionGroup($name, $actionGroupConfiguration));
         }
 

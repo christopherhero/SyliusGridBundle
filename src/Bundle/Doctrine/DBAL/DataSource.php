@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,19 +14,17 @@ declare(strict_types=1);
 namespace Sylius\Bundle\GridBundle\Doctrine\DBAL;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use Pagerfanta\Adapter\DoctrineDbalAdapter;
+use Pagerfanta\Doctrine\DBAL\QueryAdapter;
 use Pagerfanta\Pagerfanta;
-use Sylius\Component\Grid\Data\DataSourceInterface;
+use Sylius\Bundle\GridBundle\Doctrine\DataSourceInterface;
 use Sylius\Component\Grid\Data\ExpressionBuilderInterface;
 use Sylius\Component\Grid\Parameters;
 
 final class DataSource implements DataSourceInterface
 {
-    /** @var QueryBuilder */
-    private $queryBuilder;
+    private QueryBuilder $queryBuilder;
 
-    /** @var ExpressionBuilderInterface */
-    private $expressionBuilder;
+    private ExpressionBuilderInterface $expressionBuilder;
 
     public function __construct(QueryBuilder $queryBuilder)
     {
@@ -48,6 +46,11 @@ final class DataSource implements DataSourceInterface
         }
     }
 
+    public function getQueryBuilder(): QueryBuilder
+    {
+        return $this->queryBuilder;
+    }
+
     public function getExpressionBuilder(): ExpressionBuilderInterface
     {
         return $this->expressionBuilder;
@@ -55,6 +58,12 @@ final class DataSource implements DataSourceInterface
 
     public function getData(Parameters $parameters)
     {
+        if (!class_exists(QueryAdapter::class)) {
+            throw new \LogicException('Pagerfanta DBAL adapter is not available. Try running "composer require pagerfanta/doctrine-dbal-adapter".');
+        }
+
+        $page = (int) $parameters->get('page', 1);
+
         $countQueryBuilderModifier = function (QueryBuilder $queryBuilder): void {
             $queryBuilder
                 ->select('COUNT(DISTINCT o.id) AS total_results')
@@ -62,9 +71,9 @@ final class DataSource implements DataSourceInterface
             ;
         };
 
-        $paginator = new Pagerfanta(new DoctrineDbalAdapter($this->queryBuilder, $countQueryBuilderModifier));
+        $paginator = new Pagerfanta(new QueryAdapter($this->queryBuilder, $countQueryBuilderModifier));
         $paginator->setNormalizeOutOfRangePages(true);
-        $paginator->setCurrentPage($parameters->get('page', 1));
+        $paginator->setCurrentPage($page > 0 ? $page : 1);
 
         return $paginator;
     }

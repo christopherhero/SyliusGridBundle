@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,8 +20,7 @@ use Webmozart\Assert\Assert;
 
 final class DatetimeFieldType implements FieldTypeInterface
 {
-    /** @var DataExtractorInterface */
-    private $dataExtractor;
+    private DataExtractorInterface $dataExtractor;
 
     public function __construct(DataExtractorInterface $dataExtractor)
     {
@@ -31,7 +30,7 @@ final class DatetimeFieldType implements FieldTypeInterface
     /**
      * @throws \InvalidArgumentException
      */
-    public function render(Field $field, $data, array $options)
+    public function render(Field $field, $data, array $options): string
     {
         $value = $this->dataExtractor->get($field, $data);
         if (null === $value) {

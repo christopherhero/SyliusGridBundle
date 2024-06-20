@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -36,7 +36,7 @@ final class ExistsFilterSpec extends ObjectBehavior
 
     function it_filters_off_all_data_with_provided_field_equal_to_null(
         DataSourceInterface $dataSource,
-        ExpressionBuilderInterface $expressionBuilder
+        ExpressionBuilderInterface $expressionBuilder,
     ): void {
         $dataSource->getExpressionBuilder()->willReturn($expressionBuilder);
 
@@ -48,7 +48,7 @@ final class ExistsFilterSpec extends ObjectBehavior
 
     function it_filters_off_all_data_with_provided_field_not_equal_to_null(
         DataSourceInterface $dataSource,
-        ExpressionBuilderInterface $expressionBuilder
+        ExpressionBuilderInterface $expressionBuilder,
     ): void {
         $dataSource->getExpressionBuilder()->willReturn($expressionBuilder);
 
@@ -60,7 +60,7 @@ final class ExistsFilterSpec extends ObjectBehavior
 
     function it_filters_off_data_by_filters_name_if_field_is_not_provided(
         DataSourceInterface $dataSource,
-        ExpressionBuilderInterface $expressionBuilder
+        ExpressionBuilderInterface $expressionBuilder,
     ): void {
         $dataSource->getExpressionBuilder()->willReturn($expressionBuilder);
 

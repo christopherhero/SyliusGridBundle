@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -28,26 +28,19 @@ use Twig\Environment;
 
 final class TwigGridRenderer implements GridRendererInterface
 {
-    /** @var Environment */
-    private $twig;
+    private Environment $twig;
 
-    /** @var ServiceRegistryInterface */
-    private $fieldsRegistry;
+    private ServiceRegistryInterface $fieldsRegistry;
 
-    /** @var FormFactoryInterface */
-    private $formFactory;
+    private FormFactoryInterface $formFactory;
 
-    /** @var FormTypeRegistryInterface */
-    private $formTypeRegistry;
+    private FormTypeRegistryInterface $formTypeRegistry;
 
-    /** @var string */
-    private $defaultTemplate;
+    private string $defaultTemplate;
 
-    /** @var array */
-    private $actionTemplates;
+    private array $actionTemplates;
 
-    /** @var array */
-    private $filterTemplates;
+    private array $filterTemplates;
 
     public function __construct(
         Environment $twig,
@@ -56,7 +49,7 @@ final class TwigGridRenderer implements GridRendererInterface
         FormTypeRegistryInterface $formTypeRegistry,
         string $defaultTemplate,
         array $actionTemplates = [],
-        array $filterTemplates = []
+        array $filterTemplates = [],
     ) {
         $this->twig = $twig;
         $this->fieldsRegistry = $fieldsRegistry;
@@ -109,7 +102,7 @@ final class TwigGridRenderer implements GridRendererInterface
         $form->add(
             $filter->getName(),
             $this->formTypeRegistry->get($filter->getType(), 'default'),
-            $filter->getFormOptions()
+            $filter->getFormOptions(),
         );
 
         $criteria = $gridView->getParameters()->get('criteria', []);

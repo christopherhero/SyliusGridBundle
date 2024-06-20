@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,13 +19,12 @@ use Webmozart\Assert\Assert;
 final class DateTimeFilterTransformer implements DataTransformerInterface
 {
     /** @var array<string, array{hour: string, minute: string}> */
-    private static $defaultTime = [
+    private static array $defaultTime = [
         'from' => ['hour' => '00', 'minute' => '00'],
         'to' => ['hour' => '23', 'minute' => '59'],
     ];
 
-    /** @var string */
-    private $type;
+    private string $type;
 
     public function __construct(string $type)
     {
@@ -35,14 +34,16 @@ final class DateTimeFilterTransformer implements DataTransformerInterface
         $this->type = $type;
     }
 
-    public function transform($value): array
+    /** @param mixed|array $value */
+    public function transform(mixed $value): array
     {
         return $value;
     }
 
-    public function reverseTransform($value): array
+    /** @param mixed|array $value */
+    public function reverseTransform(mixed $value): array
     {
-        if (!$value['date']['year']) {
+        if (!($value['date']['year'] ?? false)) {
             return $value;
         }
 

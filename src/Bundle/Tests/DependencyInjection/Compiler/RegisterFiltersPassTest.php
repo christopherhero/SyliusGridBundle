@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sylius\Bundle\GridBundle\Tests\DependencyInjection\Compiler;
 
 use App\Filter\Foo;
+use App\Filter\NationalityFilter;
+use App\Grid\Type\NationalityFilterType;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Sylius\Bundle\GridBundle\DependencyInjection\Compiler\RegisterFiltersPass;
 use Sylius\Component\Registry\ServiceRegistry;
@@ -39,7 +41,7 @@ final class RegisterFiltersPassTest extends AbstractCompilerPassTestCase
         $this->registerService($filterRegistryServiceId = 'sylius.registry.grid_filter', ServiceRegistry::class);
         $this->registerService(
             $filterFormTypeRegistryServiceId = 'sylius.form_registry.grid_filter',
-            ServiceRegistry::class
+            ServiceRegistry::class,
         );
 
         $this->compile();
@@ -52,7 +54,7 @@ final class RegisterFiltersPassTest extends AbstractCompilerPassTestCase
                 [
                     $tag['type'],
                     new Reference($filterServiceId),
-                ]
+                ],
             );
 
             // Form Type
@@ -63,9 +65,48 @@ final class RegisterFiltersPassTest extends AbstractCompilerPassTestCase
                     $tag['type'],
                     'default',
                     $tag['form_type'],
-                ]
+                ],
             );
         }
+    }
+
+    /**
+     * @test
+     */
+    public function it_autoconfigures_a_grid_filter(): void
+    {
+        $this->registerService(NationalityFilter::class, NationalityFilter::class)
+            ->addTag('sylius.grid_filter')
+        ;
+
+        $this->registerService($filterRegistryServiceId = 'sylius.registry.grid_filter', ServiceRegistry::class);
+        $this->registerService(
+            $filterFormTypeRegistryServiceId = 'sylius.form_registry.grid_filter',
+            ServiceRegistry::class,
+        );
+
+        $this->compile();
+
+        // Filter
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            $filterRegistryServiceId,
+            'register',
+            [
+                'nationality',
+                new Reference(NationalityFilter::class),
+            ],
+        );
+
+        // Form Type
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            $filterFormTypeRegistryServiceId,
+            'add',
+            [
+                'nationality',
+                'default',
+                NationalityFilterType::class,
+            ],
+        );
     }
 
     protected function registerCompilerPass(ContainerBuilder $container): void

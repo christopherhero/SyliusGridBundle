@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,15 +20,13 @@ use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class FiltersApplicator implements FiltersApplicatorInterface
 {
-    /** @var ServiceRegistryInterface */
-    private $filtersRegistry;
+    private ServiceRegistryInterface $filtersRegistry;
 
-    /** @var FiltersCriteriaResolverInterface */
-    private $criteriaResolver;
+    private FiltersCriteriaResolverInterface $criteriaResolver;
 
     public function __construct(
         ServiceRegistryInterface $filtersRegistry,
-        FiltersCriteriaResolverInterface $criteriaResolver
+        FiltersCriteriaResolverInterface $criteriaResolver,
     ) {
         $this->filtersRegistry = $filtersRegistry;
         $this->criteriaResolver = $criteriaResolver;

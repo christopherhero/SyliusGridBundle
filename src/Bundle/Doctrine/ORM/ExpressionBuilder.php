@@ -3,7 +3,7 @@
 /*
  * This file is part of the Sylius package.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Sylius Sp. z o.o.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -17,12 +17,11 @@ use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\Query\Expr\From;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Component\Grid\Data\ExpressionBuilderInterface;
+use Sylius\Component\Grid\Data\MemberOfAwareExpressionBuilderInterface;
 
-final class ExpressionBuilder implements ExpressionBuilderInterface
+final class ExpressionBuilder implements MemberOfAwareExpressionBuilderInterface
 {
-    /** @var QueryBuilder */
-    private $queryBuilder;
+    private QueryBuilder $queryBuilder;
 
     public function __construct(QueryBuilder $queryBuilder)
     {
@@ -98,6 +97,13 @@ final class ExpressionBuilder implements ExpressionBuilderInterface
         return $this->queryBuilder->expr()->gte($this->resolveFieldByAddingJoins($field), ':' . $parameterName);
     }
 
+    public function memberOf($value, string $field)
+    {
+        $field = $this->adjustField($field);
+
+        return $this->queryBuilder->expr()->isMemberOf($value, $this->resolveFieldByAddingJoins($field));
+    }
+
     public function in(string $field, array $values)
     {
         $field = $this->adjustField($field);
@@ -130,14 +136,20 @@ final class ExpressionBuilder implements ExpressionBuilderInterface
     {
         $field = $this->adjustField($field);
 
-        return $this->queryBuilder->expr()->like($this->resolveFieldByAddingJoins($field), $this->queryBuilder->expr()->literal($pattern));
+        return $this->queryBuilder->expr()->like(
+            (string) $this->queryBuilder->expr()->lower($this->resolveFieldByAddingJoins($field)),
+            $this->queryBuilder->expr()->literal(strtolower($pattern)),
+        );
     }
 
     public function notLike(string $field, string $pattern)
     {
         $field = $this->adjustField($field);
 
-        return $this->queryBuilder->expr()->notLike($this->resolveFieldByAddingJoins($field), $this->queryBuilder->expr()->literal($pattern));
+        return $this->queryBuilder->expr()->notLike(
+            (string) $this->queryBuilder->expr()->lower($this->resolveFieldByAddingJoins($field)),
+            $this->queryBuilder->expr()->literal(strtolower($pattern)),
+        );
     }
 
     public function orderBy(string $field, string $direction)
@@ -194,7 +206,7 @@ final class ExpressionBuilder implements ExpressionBuilderInterface
             }
 
             $metadata = $this->queryBuilder->getEntityManager()->getClassMetadata(
-                $metadata->getAssociationMapping($associationField)['targetEntity']
+                $metadata->getAssociationMapping($associationField)['targetEntity'],
             );
             $rootAndAssociationField = sprintf('%s.%s', $rootField, $associationField);
 
@@ -202,7 +214,7 @@ final class ExpressionBuilder implements ExpressionBuilderInterface
             $joins = array_merge([], ...array_values($this->queryBuilder->getDQLPart('join')));
             foreach ($joins as $join) {
                 if ($join->getJoin() === $rootAndAssociationField) {
-                    $field = sprintf('%s.%s', $join->getAlias(), $remainder);
+                    $field = sprintf('%s.%s', (string) $join->getAlias(), $remainder);
 
                     continue 2;
                 }
@@ -213,7 +225,7 @@ final class ExpressionBuilder implements ExpressionBuilderInterface
             $associationAlias = str_replace(
                 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
                 ['g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'],
-                md5($rootAndAssociationField)
+                md5($rootAndAssociationField),
             );
 
             $this->queryBuilder->innerJoin($rootAndAssociationField, $associationAlias);
